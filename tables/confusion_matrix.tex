@@ -1,0 +1,25 @@
+\newcommand\MyBox[2]{
+  \fbox{\lower0.75cm
+    \vbox to 1.7cm{\vfil
+      \hbox to 1.7cm{\hfil\parbox{1.4cm}{#1\\#2}\hfil}
+      \vfil}%
+  }%
+}
+
+
+\noindent
+\renewcommand\arraystretch{1.5}
+\setlength\tabcolsep{0pt}
+
+\begin{table*}[htp]
+	\centering
+	\caption{Dropout Prediction Confusion Matrix}\label{table:confusion_matrix}
+	\begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c @{\hspace{0.4em}}c @{\hspace{0.7em}}l}
+	  \multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft actual\\ value}} & 
+	    & \multicolumn{2}{c}{\bfseries Prediction outcome}\\
+	  & & \bfseries stopout & \bfseries persist  \\
+	  & stopout & \MyBox{True}{Positive} & \MyBox{False}{Negative} \\[2.4em]
+	  & persist & \MyBox{False}{Positive} & \MyBox{True}{Negative}  \\
+	\end{tabular}
+\end{table*}
+

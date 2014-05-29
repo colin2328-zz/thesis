@@ -1,0 +1,21 @@
+\chapter{Models for Predicting Stopout}\label{chap:models}
+The primary goal of this thesis is to build predictive models of student persistence in MOOCs. In order to model stopout, we employed a handful of different modelling techniques. This chapter describes the type of classifiers we built, the promising results, and a discussion of the implications these encouraging results suggest.
+
+\section{Why Predict? (Motivations)}
+Not sure we need this section
+
+\section{Related work?}
+What do we put here?
+
+\section{Model Overview}
+In order to accurately, we used a variety of modelling techniques. In each, we attempted to predict a student's stopout value in later weeks in the course using data from earlier weeks. This type of prediction problem is called a binary classification, or binary prediction problem, because we am trying to predict a value out of a set of two values: Stopout and non stopout. As such, the models we built specialize in binary classification. We used each model to try to predict over a range of leads(number of weeks ahead) given a variety of lag(number of weeks of data to use). 
+
+The five categories of models we constructed are:
+
+\begin{itemize}
+\item Logistic regression 
+\item Hidden markov models (HMMs)
+\item Logistic Regression model using HMM hidden state probability distribution as the input logistic regression feature-set
+\item Discriminative classifiers using an automated machine learning model optimization framework, called Delphi
+\item Randomized Logistic regression to asses feature importance
+\end{itemize}

@@ -1,0 +1,24 @@
+\chapter{Discriminative Classifiers: Delphi} \label{chap:delphi} 
+\section{Background}
+Delphi is a first-ever shared machine learning service. It is a multi-algorithm, multi-parameter self-optimizing machine learning system that attempts to automatically find and generate the optimal discriminative model. A hybrid Bayesian and Multi-armed Bandit optimization system works in a load balanced fashion to quickly deliver results in the form of ready-to-predict models, confusion matrices, cross validation accuracy, training timings, and average prediction times. Delphi works by creating a very high dimensional search space of models and parameters. It navigates this space by trying many different combinations, and gravitating towards models with better results (in terms of prediction accuracy). It was built by an M.Eng. student in the ALFA group. Delphi uses a wide array of classification algorithms, most of which are implementations from scikit-learn. The explanations for each are outside the scope of this thesis.
+
+\section{Predicting stopout using Delphi}
+
+\subsection{Experimental setup}
+In order to run our datasets through Delphi, we performed the following:
+\begin{enumerate}
+\item Chose a few lead, lag combinations to run on Delphi. Since Delphi creates many models, we only chose 3 datasets per cohort. We chose lead and lag combinations which were difficult for logistic regression to predict so we could see if Delphi would perform better. We chose the following combinations: lead of 13, lag of 1; lead of 3, lag of 6; lead of 6, lag of 4.
+\item Flattened each cohort's train and test dataset to generate files which could be passed to Delphi. We flattened in the same manner as described in logistic regression section.
+\item Ran the 12 datasets through Delphi. This gave us 12 models which performed best on a mean cross validation prediction accuracy metric.
+\item Evaluated these models on the basis of test dataset ROC AUC and cross validation ROC AUC performance.
+\end{enumerate}
+
+\section{Delphi results}
+
+The models created by Delphi attained AUCs very similar to those of our logistic regression and HMM models. The best algorithm chosen by Delphi varied depending on which lead, lag and cohort combination was chosen. The algorithms included stochastic gradient descent, k nearest neighbors, logistic regression, support vector machines and random forests.
+
+For the two larger cohorts, \neither and \forum, Delphi's models used logistic regression, stochastic gradient descent, support vector machines and random forests. For each of the lead and lag combinations, the models' results were with 0.02 of our logistic regression results. This indicated that the predictive power of these cohorts was not due to the type of model used. Rather, the strong predictive accuracies achieved were caused by the interpretive features in the models. As previously noted in Chapter \ref{chap:logreg}, varying the features used, such as when using only the \selfself features rather than the \selfself features and \crowdself features, significantly changed the results. These findings led us to conclude that focusing on better features provides more leverage in MOOC data science than does fine-tuning models.
+
+For the smaller \wiki and \both cohorts, Delphi's models provided significantly better accuracy. For example, for the \wiki cohort, all three lead and lag combinations' models produces AUCs greater than 0.85! This indicated that for these cohorts, the type of model matters a great deal. We conclude that this is due to the small size of the cohorts, as some classifiers are able to more gracefully handle less data. The best classifiers used to model these cohorts included k nearest neighbors and stochastic gradient descent.
+
+In Chapters \ref{chap:logreg} through Chapters \ref{chap:delphi} we have presented the models we used in stopout prediction. In the next chapter, we present the framework used to accomplish building these models at scale.

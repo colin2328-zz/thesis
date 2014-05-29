@@ -1,0 +1,69 @@
+\chapter{Introduction}
+
+\section{Overview}
+Massive Open Online Courses (MOOCs) leverage digital technologies to teach advanced topics at scale. MOOC providers such as edX and Coursera boast hundreds of classes developed by top-tier universities including MIT, Harvard, Stanford and Berkeley. Renowned Professors record their lectures, and when needed, use interactive whiteboards to explain concepts. Recordings are delivered all over the world via web servers at no cost to the learner.
+Far from compromising the quality of course content, the Internet provides a flexible medium for educators to employ new instructional tools. For example, videos enable students to pause, rewind, review difficult concepts and even adjust the speed. In addition, MOOCs allow the learner the flexibility to learn in his or her own time frame. Finally, according to Sanjay Sarma, the head of the Office of Digital Learning at MIT, MOOC lecture durations match the brain's ideal length of time needed to grasp a new concept. He explains ``there is a lot of pedagogical literature that shows that ... students' ideal attention span for learning things is 10-15 minutes.'' \cite{sarma} Only in the online medium are short lectures logistically feasible through videos. MOOCs are changing the face of education by providing an alternative to the “one-size fits all” learning concept employed by hundreds of universities.
+
+The specific layout of each MOOC varies, but most follow a similar format. Content is sectioned into modules, usually using weeks as intervals. Most MOOCs include online lectures (video segments), lecture questions, homework questions, labs, a forum, a Wiki, and exams. Students advance through the material sequentially, access online resources, submit assignments and participate in peer-to-peer interactions (like the forum).
+
+Not surprisingly, MOOCs have attracted the attention of online learners all over the world. The platforms boast impressive numbers of registrants and individuals who complete online course work. For example, MITx offered its first course 6.002x: Circuits and Electronics in the Fall of 2012. 6.002x had 154,763 registrants. Of those, 69,221 students looked at the first problem set, and 26,349 earned at least one point. 9,318 students passed the midterm and 5,800 students got a passing score on the final exam. Finally, after completing 15 weeks of study, 7,157 registrants earned the first certificate awarded by MITx, showing they had successfully completed 6.002x. For perspective, approximately 100 students take the same course each year at MIT. It would have taken over 70 years of on-campus education to grant the same number of 6.002x certificates that were earned in a single year online.
+
+While the completion rates are impressive when compared to in-class capacity, they are still low relative to the number of people who registered, completed certain parts of the course or spent a considerable amount of time on the course. To illustrate, in the above scenario approximately 17\% attempted and got at least one point on the first problem set. The percentage of students who passed the midterm drops to just 6\%, and certificate earners dwindles at just under 5\%. 94\% of registrants did not make it past the midterm.
+
+How do we explain the 96\% \sti rate from course start to course finish? Analyzing completion rates goes hand in hand with understanding student behavior. One MOOC research camp advocates analyzing student usage patterns-- resources used, homework responses, forum and Wiki participation -- to improve the online learning experience thereby increasing completion rates. Other researchers question the feasibility of analyzing completion rates altogether because the online student body is unpredictable. For example, some students register online because it is free and available with little or no intention of finishing. Some students who leave may lack motivation, or could leave due to personal reasons completely unrelated to MOOCs. As a result, interpreting completion rates is not a straightforward exercise. However, we believe that if we are to fully understand how students learn in MOOCs, we need to better understand why students \sti. Building accurate predictive models is the first step in this undertaking. 
+
+This thesis tackles the challenge of predicting student persistence in MOOCs. We believe a three pronged approach which comprehensively analyzes student interaction data, extracts from the data sophisticated predictive indicators and leverages state-of-the-art models will lead to successful predictions. To our knowledge, this is the first comprehensive treatment of predicting \sti which produces and considers complex, multi-layered interpretive features and fine tuned modelling. 
+
+This thesis presents the work we did to build analytical models capable of predicting student persistence. We focus on the aforementioned course, the Fall 2012 offering of 6.002x: Circuits and Electronics. We extracted 28 interpretive features hypothesized to indicate future persistence. We used a parallelization framework to construct hundreds of different models using a variety of techniques. We demonstrate that with only a few weeks of data, machine learning techniques can predict persistence remarkably well. For example we were able to achieve an area under the curve of the receiver operating characteristic of 0.71, given only one week of data, while predicting student persistence in the last week of the course. Given more data, some of the models reached an AUC of 0.95, indicating fantastic predictive power.
+
+\section{Research findings}
+After applying the steps outlined in the upcoming chapters, we were successfully able to predict \sti for the Fall 2012 offering of 6.002x. Through analysis of the resulting models, we uncovered a myriad of findings, including the following:
+
+\begin{itemize}
+\item Stopout prediction is a tractable problem. Our models achieved an AUC (receiver operating characteristic area-under-the-curve) as high as 0.95 (and generally $\sim$0.88) when predicting one week in advance. Even with more difficult prediction problems, such as predicting student stopout at the end of the course with only one week's data, our models attained AUCs of $\sim$0.7. This suggests that early predictors of stopout exist.
+
+\item A crowd familiar with MOOCs is capable of proposing sophisticated features which are highly predictive. The features brainstormed by our crowd-sourcing efforts were actually more useful than those we thought of independently. Additionally, the crowd is very willing to participate in MOOC research. These observations suggest the education-informed crowd is a realistic source of modeling assistance and more efforts should be made to engage it.
+
+\item Overall, features which incorporate student problem submission engagement are the most predictive of stopout. As our prediction problem defined stopout using problem submissions, this result is not particularly surprising. however submission engagement is an arguably good definition.
+
+\item In general, complex, sophisticated features, such the percentile of a student when compared to other students (\x{202}, Table \ref{table:crowd_proposed_self_extracted}), which relates students to peers, and lab grade over time(\x{207}, Table \ref{table:crowd_proposed_self_extracted}), which has a temporal trend, are more predictive than simple features, such a count of submissions (\x{7}, Table \ref{table:self_proposed_self_extracted}). 
+
+\item Features involving inter-student collaboration, such as the class forum and Wiki, can be useful in stopout prediction. It is likely that the quality and content of a student's questions or knowledge are more important than strict collaboration frequency. We found that, in particular, the length of forum posts (\x{5}, Table \ref{table:self_proposed_self_extracted}) is predictive, but the number of posts (\x{3}, Table \ref{table:self_proposed_self_extracted}) and number of forum responses (\x{201}, Table \ref{table:crowd_proposed_self_extracted}) is not. The role of the collaborative mechanism (i.e. Wiki or forum) also appears to be distinctive since, in contrast to forum post length, Wiki edits have almost no predictive power.
+
+\item For almost every prediction week, our models find only the most recent four weeks of data predictive.
+
+\item Taking the extra effort to extract complex predictive features that require relative comparison or temporal trends, rather than employing more direct covariates of behavior, or \underline{even trying multiple modeling techniques}, is the most important contributor to successful MOOC data science. While we constructed many models with a variety of techniques, we found consistent accuracy arising \textbf{across techniques} which was dependent on the features we used. Using more informative features yielded superior accuracy that was consistent across modeling techniques. Very seldom did the modeling technique itself make a difference. A significant exception to this is when the model only has a small number of students (for example,$\sim$ less than 400) to learn from. Some models perform notably better than others on less data.
+
+\item Employing dimensionality reduction, such as principal component analysis (PCA), generally did not improve the predictive accuracy of our models. However, it did significantly speed up our model generation run time. We applied PCA only to discretized data to train hidden markov models (HMMs).
+
+\item By using HMMs we gain support for our hypothesis that the observations we gather about students reflect a hidden state or `'latent variable'. We speculate that this state is related to engagement or interest. Our models uncovered different quantities of modes for this hidden state which depended on the cohort of students. For some cohorts, such as \neither students, the number of modes seems to exceed 29, as increasing this number in our HMMs never stopped producing better results. However, for \forum cohort, the number of modes is only around 11.
+\end{itemize}
+
+\section{Contributions of this thesis}
+This thesis provides the following contributions to MOOC research and educational data science:
+
+\begin{itemize}
+\item Successfully predicted stopout for the Fall 2012 offering of 6.002x. The major findings of the predictive models are found in Chapter \ref{chap:conc}. 
+\item Extracted 28 sophisticated, interpretive features which combine student usage patterns from different data sources. This included leveraging the collective brain-power of the crowd. 
+\item Utilized these features to create a series of temporal and non-temporal feature-sets for use in predictive modelling.
+\item Created over 10,000 comprehensive, predictive models using a variety of state-of-the-art techniques.
+\item Built and demonstrated a scalable, distributed, modular and reusable framework to accomplish these steps iteratively.
+\end{itemize}
+
+The strongest contribution of this thesis is the design, development and demonstration of a stopout prediction \textbf{methodology}, end to end, from raw source data to model analysis. The methodology is painstakingly meticulous about every detail of data preparation, feature engineering, model evaluation and outcome analysis. As a result of this thoroughness, research of stopout analysis exits an immature stage of ad-hoc data preparation and results, with insufficient details to allow replication or systematic advancement of knowledge. We document a methodology that is reproducible and scalable, and that will soon be applied on a number of additional edX and Coursera courses with the expectation of similar success. In addition, the methodology and software will shortly be released to interested educational researchers.
+
+\section{Outline of this thesis}
+
+The thesis is organized into the following chapters:
+
+\begin{itemize}
+\item Chapter \ref{chap:data} describes the preparation of the received 6.002x data.
+\item Chapter \ref{chap:features} presents the interpretive features extracted to create the predictive models.
+\item Chapter \ref{chap:evaluation} describes the framework used to validate our predictive models.
+\item Chapter \ref{chap:logreg} details the logistic regression models and presents the ensuing conclusions.
+\item Chapter \ref{chap:hmm} outlines a temporal modelling technique called hidden markov models and the predictive results.
+\item Chapter \ref{chap:logreg_hmm} presents a stacked model using both techniques and overviews our findings.
+\item Chapter \ref{chap:delphi} describes the results of using a generalized predictive modeling framework, Delphi.
+\item Chapter \ref{chap:dcap} highlights the parallelization framework used to build predictive models at scale.
+\item Chapter \ref{chap:conc} concludes with high level perspective and reflections on the challenges and overall endeavor of data science.
+\end{itemize}

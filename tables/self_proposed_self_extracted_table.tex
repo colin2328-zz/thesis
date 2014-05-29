@@ -1,0 +1,28 @@
+\begin{table*}[htp]
+	\centering
+	\caption{List of \selfself \cov}\label{table:self_proposed_self_extracted}
+{
+		\begin{tabular}{|c|p{4cm}|p{10cm}|}
+			\hline
+							& Name 													& Definition																									 \\ \hline
+			\x{1}		& stopout 											& Whether the student has stopped out or not 									\\ \hline
+			*\x{2}	& total duration								& Total time spent on all resources														\\ \hline
+			\x{3}		& number forum posts						& Number of forum posts																				\\ \hline
+			\x{4}		& number wiki edits							& Number of wiki edits																				\\ \hline
+			*\x{5}	& average length forum post			& Average length of forum posts																\\ \hline 
+			*\x{6}		& number distinct problems submitted	& Number of distinct problems attempted 							\\ \hline 
+			*\x{7}	& number submissions						& Number of submissions \footnote{In our terminology, a submission corresponds to a problem attempt. In 6.002x, students could submit multiple times to a single problem. We therefore differentiate between problems and submissions.}																				\\ \hline
+			\x{8}		& number distinct problems correct & Number of distinct correct problems 											\\ \hline 
+			\x{9}	& average number submissions					& Average number of submissions per problem (\x{7} / \x{6})			\\ \hline 
+			\x{10} & observed event duration per correct problem		& Ratio of total time spent to number of distinct correct problems (\x{2} / \x{8}). This is the inverse of the percent of problems correct \\ \hline 
+			\x{11} & submissions per correct problem		& Ratio of number of problems attempted to number of distinct correct problems	(\x{6} / \x{8})	\\ \hline
+			\x{12} & average time to solve problem	& Average time between first and last problem submissions for each problem (average(max(submission.timestamp) - min(submission.timestamp) for each problem in a week) )															\\ \hline
+			*\x{13} & observed event variance			& Variance of a student's observed event timestamps  					 \\ \hline
+			\x{14} & number collaborations				& Total number of collaborations	(\x{3} + \x{4})														 \\ \hline
+			\x{15} & max observed event duration	& Duration of longest observed event													 \\ \hline
+			*\x{16} & total lecture duration				& Total time spent on lecture resources 											\\ \hline
+			*\x{17} & total book duration					& Total time spent on book resources													 \\ \hline
+			*\x{18} & total wiki duration					& Total time spent on wiki resources													 \\ \hline
+		\end{tabular}
+	}
+\end{table*}

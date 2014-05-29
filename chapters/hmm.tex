@@ -1,0 +1,126 @@
+\chapter{Temporal Models of Student Behavior}\label{chap:hmm} 
+
+In the previous chapter we presented a flat discriminative model to be able to predict \sti. In this chapter we present a methodology to model a student's data temporally. We posit that while taking a course a student has a latent state that represents a summary of his \textit{engagement} and \textit{interest} in the course during a particular week $i$. The \feat that we evaluated for the student for a week $i$ represent a draw from a multivariate distribution pertaining to that state. We posit that a student transitions from one state to another state during the course as the course transitions from one week to another. Using the data from multiple students our goal is to identify how many unique states there are, how students transition from state $i$ to state $j$ and what multivariate distribution of the \feat does each state represent? 
+
+One way to achieve this is to cluster all students weekly data which is $15 \times N$ number of data points. Next, extract every student's cluster label on a weekly basis. We can then learn the transitions between the cluster labels across all students. An alternative approach presented in this chapter uses Hidden Markov Models (HMM) to jointly identify the multivariate distributions that each state represents and the transition probabilities between states.  
+
+\section{Hidden markov models for modeling student behavior}
+Hidden markov models, or HMMs, are a powerful and highly used class of \textit{generative} models. HMMs are usually built to model time series data, such as stock prices. They are a type of probabilistic graphical models in which the modeled entity is assumed to transition from one latent state to another as discrete time steps progress.  However, this state is not directly observable, and thus is `hidden.'  HMMs suppose that although the hidden state is not directly observable, the state relates to variables that are observable probabilistically. More specifically, each hidden state corresponds to a multivariate distribution for the observed variables from which they are most likely sampled from given the hidden state. The most basic HMM has only one observed variable (per time step), but the models we create contain 28 observed variables, one per feature\footnote{Most software libraries only support one observed variable. This is because using multiple observed variables is computationally complex}. Figure \ref{fig:hmm} shows the graph structure of a typical HMM. In the figure, Z (shaded node) represents a hidden node. The graphical form as shown in the Figure~\ref{fig:hmm} can be written as a joint distribution given by: 
+
+\begin{equation}
+p(z_{1:T},\bar{x}_{1:T})=p(z_1)\prod_{t=2}^T p(z_t|z_{t-1}) \prod_{t=2}^T p(\bar{x}_t|z_t)
+\end{equation}
+In the most common case, independence is assumed among the observed variables given the hidden variable, making the joint distribution:
+\begin{equation}
+p(z_{1:T},\bar{x}_{1:T})=p(z_1)\prod_{t=2}^T p(z_t|z_{t-1}) \prod_{t=2}^T \{ \prod_{i=1}^m p({x^i}_t|z_t)\}
+\end{equation}
+
+The observed variables can be either continuous, or discrete. In the continuous case, the distribution for observed variables is typically assumed to be independent univariate Gaussian. In the discrete case, a multinomial distribution is used to represent the joint distribution between the hidden variable and the observed variable.  Note that, when using multinomial distribution, observed values are no longer ordinal, but are nominal, i.e., A is not greater or less than B, rather is simply not B. To use this model when the variables are continuous the variables are binned using a methodology that preserves the entropy of the univariate distribution for that variable (presented in section \ref{section:binning}).
+
+Let us assume that the hidden variable takes one of the $k$ values $1 \dots K$ and each observed variable has $1 \dots P$ discrete values. The model is parametrically defined by a $K$-by-$K$ transition matrix and $m$,  $K$-by-$P$ emission matrices, one for each of the observed variable given the hidden variable and a 1-by-K probability vector for the initial state $p(z_1)$. 
+
+The entry $i,j$ in the transition matrix shown below represents the probability $p(z_t=i |z_{t-1}=j)$ and is given by: 
+\begin{equation}
+A_{i,j} =
+ \begin{pmatrix}
+  a_{1,1} & a_{1,2} & \cdots & a_{1,k} \\
+  a_{2,1} & a_{2,2} & \cdots & a_{2,k} \\
+  \vdots  & \vdots  & \ddots & \vdots  \\
+  a_{k,1} & a_{k,2} & \cdots & a_{k,k}
+ \end{pmatrix}
+\end{equation}
+
+and the emission matrix for $p^{th}$ observed variable is given by:
+
+\begin{equation}
+E_{i,j} =
+ \begin{pmatrix}
+  e_{1,1} & e_{1,2} & \cdots & e_{1,p} \\
+  e_{2,1} & e_{2,2} & \cdots & e_{2,k} \\
+  \vdots  & \vdots  & \ddots & \vdots  \\
+  e_{k,1} & e_{k,2} & \cdots & e_{k,p}
+ \end{pmatrix}
+\end{equation}
+
+
+The entry $i,j$ in the emission matrix for variable $m$ represents $p(x_t^m=i | z_t=j)$. The objective of training an HMM is to find the optimal \textit{transition} and \textit{emission} probabilities given the graphical structure. 
+\begin{figure}[ht!]
+  \caption{A typical hidden markov model structure. Top figure shows a common hidden markov model with only one variable. The bottom figure represents our case where we have multiple observed variables per time slice.}\label{fig:hmm}
+  \centering
+    \includegraphics[width=1.0\textwidth]{figures/one-vs-multi}
+\end{figure}
+
+\subsection{Learning the probabilities of an HMM}
+A hidden markov model is typically constructed using the Baum-Welch algorithm. Firstly, the initial states, transition matrices and emissions matrices are assigned (usually randomly). In each iteration of Baum-Welch, a forward-backwards inference algorithm is used to estimate the $p(z_t|\bar{x})$ for all $t$ and for all sequences given the parameters. Subsequent to this estimation, the 
+ the emissions and transition matrices are updated.  As the parameters are updated, a log-likelihood score is evaluated to measure how well the model fits the data. In each iteration, the likelihood improves, and will begin to converge on either a local or global maximum.The algorithm terminates after the difference between log-likelihood of two consecutive iterations falls below a threshold (implying convergence), or a maximum number of iterations is reached. Through training, the model learns both the distributions of observed variables for each state, and the probabilities of transitioning from one state to another.
+
+Figures \ref{fig:hmm_training} demonstrates how the observed variables are used as evidence in order to train the HMM.
+
+
+\begin{figure}[ht!]
+  \caption{This figure shows how the student-week-matrix which has features that represent the behavior of a student during a week is provided as evidence to the hidden markov model training.}\label{fig:hmm_training}
+  \centering
+    \includegraphics[width=0.7\textwidth]{figures/week_matrix_to_hmm}
+\end{figure}
+
+\subsection{Inference}
+Once the HMM is built, we can utilize it to predict a future value of an observed variable. In our case, we can predict the \sti variable for a future week. Figure \ref{fig:hmm_predict} shows this use of an HMM as a prediction engine. An alternative inference goal is to find the probabilities for each hidden state at a given future timestep. Inference is performed using the forward-backwards algorithm.
+
+\begin{figure}[ht!]
+  \caption{This figure shows how the HMM is used to predict value for an observed variable in a future time slice. In this specific example evidence is provided to the model through week 2 and a prediction is sought for the 14th week }\label{fig:hmm_predict}
+  \centering
+    \includegraphics[width=0.7\textwidth]{figures/hmm-as-predict}
+\end{figure}
+
+\subsection{Advantages and disadvantages of HMMs} 
+\begin{itemize}
+\item Hidden markov models are designed for time sequenced data. They allow for repeating features across time sequences. 
+\item HMMs hidden state provide some intuitive notion of clustering types of students by way of the hidden state. For example, if a model with a hidden support of 4 delivers fantastic predictive power, we could surmise that there are really 4 modes an entity can be in. Indeed, the emission probabilities of the hidden states might provide insights about what the modes may represent. In the stopout prediction problem, for example, the modes might represent different levels of engagement in the course, and represent the true state of a student in a given timestep. However, apart from such a scenario, HMMs often become a black box predictive model. For example, there is no notion of feature weights. 
+\item HMMs require a lot of computing power to train, and the training time grows exponentially with the number of time sequences (this is offset through dynamic programming techniques, but is still slow). 
+\item Hidden markov models assume independence between the observed variables given a hidden variable, which is often not the case (such as in our feature-set which uses derived features). Training a more complicated graph is possible, but much more computationally intensive.
+\item The Baum-Welch algorithm can get stuck on local maxima of probabilities as it converges.
+\end{itemize}
+
+\section{Predicting stopout using HMMs}
+We trained hidden markov models with the objective of predicting student persistence. We used the 28 (27 interpretive features + binary stopout feature) as described in chapter 3 as the observed variables of the hidden state. We applied inference to the trained models, asking the HMM to generate the probabilities of sampling the \sti value for a future timestep.
+
+Each experiment used a given lead as a parameter. For example, for a lead of 1, we used features from week 1 to predict week 2, then features from 1 and 2 to predict week 3, etc. Note that this prediction problem is subtly different from that of the logistic regression. In logistic regression, we chose a lead and a lag, and predicted a single week's stopout value. Here, we choose a lead, and use every possible lag with that lead in order to predict every week up until the end of the course. However, as in logistic regression, we do not perform inference on weeks where the student is already known to have stopped out.
+
+Hidden markov models require several parameter choices. Because the correct hidden support value is unknown in hidden markov models, we varied this parameter to find an optimal value. We used a range of supports from 3 to 29, with a step size of 2. We stopped at 29 for the sake of computing time. We used 100 iterations as the maximum number of Baum-Welch iterations along with a log-likelihood differential threshold of 0.0000001. Training stopped when one or the other was reached.
+
+\subsection{Experimental setup}
+To build a predictive HMM, we did the following on every lead, hidden support and cohort combination
+\footnote{We first used a Matlab implementation of Dynamic Bayesian Networks in order to build HMMs. This toolbox was flexible enough to construct arbitrary graphical structures, including HMMs. However, this toolkit proved too slow to use, even at scale. We switched to a custom built implementation of hidden markov models. The code was written in C++ by two members in the ALFA group. It was orders of magnitude faster, but provided a much cruder interface to use. After a lot of testing, and benchmarking, we achieved as good of results as with the MATLAB implementation given a large dataset, and with much faster time. Consequently, we recommend any sizable machine learning/data science project to use C++}:
+
+\begin{enumerate}
+\item Performed 10 fold cross validation on the training set. In order to speed this process up, we ran each in parallel using python's Parallelization package.
+\item Trained an HMM on the entire train dataset. To compensate for the fact that HMMs often get stuck on local maxima as they train, we trained 10 models for each experiment. We selected the best model to use based on the likelihood score of the Baum-Welch algorithm. We also performed this in parallel, as training can take significant amounts of time.
+\item Performed inference on the test dataset by putting each data point through best model. Specifically, we asked the model for the probabilities of each stopout value for a given week. We compared the resulting probability of stopout versus the truth stopout label.
+\item Evaluating the model using mean cross-validation ROC AUC and test set ROC AUC.
+\end{enumerate}
+
+\input{results/hmm}
+
+
+
+
+
+
+% \begin {center}
+% \begin {tikzpicture}[-latex ,auto ,node distance =4 cm and 5cm ,on grid ,
+% semithick ,
+% state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
+% draw,processblue , text=blue , minimum width =1 cm}]
+% \node[state] (C)
+% {$1$};
+% \node[state] (A) [above left=of C] {$0$};
+% \node[state] (B) [above right =of C] {$2$};
+% \path (A) edge [loop left] node[left] {$1/4$} (A);
+% \path (C) edge [bend left =25] node[below =0.15 cm] {$1/2$} (A);
+% \path (A) edge [bend right = -15] node[below =0.15 cm] {$1/2$} (C);
+% \path (A) edge [bend left =25] node[above] {$1/4$} (B);
+% \path (B) edge [bend left =15] node[below =0.15 cm] {$1/2$} (A);
+% \path (C) edge [bend left =15] node[below =0.15 cm] {$1/2$} (B);
+% \path (B) edge [bend right = -25] node[below =0.15 cm] {$1/2$} (C);
+% \end{tikzpicture}
+% \end{center}

@@ -1,0 +1,144 @@
+% -*- Mode:TeX -*-
+
+%% IMPORTANT: The official thesis specifications are available at:
+%%            http://libraries.mit.edu/archives/thesis-specs/
+%%
+%%            Please verify your thesis' formatting and copyright
+%%            assignment before submission.  If you notice any
+%%            discrepancies between these templates and the
+%%            MIT Libraries' specs, please let us know
+%%            by e-mailing thesis@mit.edu
+
+%% The documentclass options along with the pagestyle can be used to generate
+%% a technical report, a draft copy, or a regular thesis.  You may need to
+%% re-specify the pagestyle after you \include  cover.tex.  For more
+%% information, see the first few lines of mitthesis.cls.
+
+%\documentclass[12pt,vi,twoside]{mitthesis}
+%%
+%%  If you want your thesis copyright to you instead of MIT, use the
+%%  ``vi'' option, as above.
+%%
+%\documentclass[12pt,twoside,leftblank]{mitthesis}
+%%
+%% If you want blank pages before new chapters to be labelled ``This
+%% Page Intentionally Left Blank'', use the ``leftblank'' option, as
+%% above.
+
+\documentclass[12pt,vi,twoside]{mitthesis}
+%\documentclass[11pt,vi]{mitthesis}
+%\documentclass[11pt,vi,singlespace]{mitthesis}
+
+%\newcommand{\pgst}{\pagestyle{drafthead}}
+\newcommand{\pgst}{\pagestyle{plain}}
+
+\usepackage{lgrind}
+\usepackage[shortlabels]{enumitem}
+\usepackage{fancyvrb}
+\usepackage[dvips]{graphicx}
+\usepackage[noend]{algorithmic}
+\usepackage{floatrow}
+\usepackage{algorithm}
+\usepackage{xspace}
+\usepackage{color}
+%\usepackage{float}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage[labelfont=bf,labelfont=bf]{caption}
+%\usepackage{subcaption}
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks   = true, %Colours links instead of ugly boxes
+  urlcolor     = blue, %Colour for external hyperlinks
+  linkcolor    = blue, %Colour of internal links
+  citecolor   = red %Colour of citations
+}
+\newfloatcommand{capbtabbox}{table}[][\FBwidth]
+\usepackage {tikz}
+\usetikzlibrary {positioning}
+%\usepackage {xcolor}
+\definecolor {processblue}{cmyk}{0.96,0,0,0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%% CONSTANTS %%%%%%%%%%%%%%%
+
+\newcommand{\csail}{MIT CSAIL\xspace}
+\newcommand{\totalclf}{114,000\xspace}
+
+%%% datasets %%%
+\newcommand{\mdfo}{MOOC Dropout dataset\xspace}
+
+%%% algorithms %%%
+\newcommand{\svm}{Support Vector Machine\xspace}
+\newcommand{\dt}{Decision Tree\xspace}
+\newcommand{\mnb}{Multinomial Naive Bayes\xspace}
+\newcommand{\gnb}{Gaussian Naive Bayes\xspace}
+\newcommand{\bnb}{Bernoulli Naive Bayes\xspace}
+\newcommand{\sgd}{Stochastic Gradient Descent\xspace}
+\newcommand{\pa}{Passive Aggressive\xspace}
+\newcommand{\logreg}{Logistic Regression\xspace}
+\newcommand{\rf}{Random Forest\xspace}
+\newcommand{\dbn}{Deep Belief Network\xspace}
+\newcommand{\knn}{K Nearest Neighbors\xspace}
+
+
+%% symbols %%
+\newcommand{\kwindow}{$k_{window}$\xspace}
+\newcommand{\rmin}{$r_{min}$\xspace}
+\newcommand{\feat}{features\xspace}
+\newcommand{\cov}{covariates\xspace}
+\newcommand{\coeff}{coefficients\xspace}
+\newcommand{\co}{covariate\xspace}
+\newcommand{\rLR}{randomized\xspace}
+\newcommand{\st}{stopout\xspace}
+\newcommand{\sti}{stopout\xspace}
+
+\newcommand{\neither}{passive collaborator\xspace}
+\newcommand{\wiki}{wiki contributor\xspace}
+\newcommand{\forum}{forum contributor\xspace}
+\newcommand{\both}{fully collaborative\xspace}
+
+\newcommand{\lag}{lag\xspace}
+
+% \newcommand{\x}[1]{feature\_#1\xspace}
+\newcommand{\x}[1]{$x_{#1}$\xspace}
+
+
+\newcommand{\selfself}{self-proposed, self-extracted\xspace}
+\newcommand{\crowdself}{crowd-proposed, self-extracted\xspace}
+\newcommand{\crowdcrowd}{crowd-proposed, crowd-extracted\xspace}
+
+%%%%%%%%%%%% END CONSTANTS %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\typein [\files]{Enter file names to process, (chap1,chap2 ...), or `all' to process all files:}
+%\def\all{all}
+%\ifx\files\all \typeout{Including all files.} \else \typeout{Including only \files.} \includeonly{\files} \fi
+
+\pgst
+\begin{document}
+% \setcounter{tocdepth}{1}
+\include{cover}
+\include{contents}
+
+% \include{chapters/model_overview}
+
+\pgst
+\include{chapters/intro}
+\include{chapters/data}
+\include{chapters/features}
+\include{chapters/evaluation}
+\include{chapters/logreg}
+\include{chapters/hmm}
+\include{chapters/logreg_hmm}
+\include{chapters/delphi}
+\include{chapters/dcap}
+\include{chapters/conclusion}
+
+\include{biblio}
+
+\end{document}

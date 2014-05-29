@@ -1,0 +1,74 @@
+\contentsline {chapter}{\numberline {1}Introduction}{19}{chapter.1}
+\contentsline {section}{\numberline {1.1}Overview}{19}{section.1.1}
+\contentsline {section}{\numberline {1.2}Research findings}{21}{section.1.2}
+\contentsline {section}{\numberline {1.3}Contributions of this thesis}{23}{section.1.3}
+\contentsline {section}{\numberline {1.4}Outline of this thesis}{24}{section.1.4}
+\contentsline {chapter}{\numberline {2}Data Curation}{27}{chapter.2}
+\contentsline {section}{\numberline {2.1}Data organization into MOOCdb}{27}{section.2.1}
+\contentsline {section}{\numberline {2.2}Prediction problem assumptions}{29}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Time-slice delineation}{29}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Stopout definition}{30}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Lead and Lag}{31}{subsection.2.2.3}
+\contentsline {section}{\numberline {2.3}Dataset partitioning into cohorts}{32}{section.2.3}
+\contentsline {chapter}{\numberline {3}Constructing Interpretive Features}{35}{chapter.3}
+\contentsline {section}{\numberline {3.1}Feature origins}{35}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}self-proposed, self-extracted\xspace }{36}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}crowd-proposed, self-extracted\xspace }{38}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}crowd-proposed, crowd-extracted\xspace }{40}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}Complexity of extracted features}{40}{section.3.2}
+\contentsline {section}{\numberline {3.3}Statistical Analysis}{41}{section.3.3}
+\contentsline {section}{\numberline {3.4}Principal Component Analysis}{43}{section.3.4}
+\contentsline {section}{\numberline {3.5}Discretization of features}{44}{section.3.5}
+\contentsline {chapter}{\numberline {4}Model Evaluation}{49}{chapter.4}
+\contentsline {section}{\numberline {4.1}Point metrics for hard decision outputs}{49}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Confusion Matrices}{49}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Prediction Accuracy}{50}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Precision and Recall}{51}{subsection.4.1.3}
+\contentsline {section}{\numberline {4.2}Area metrics for soft decisions}{51}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Precision-recall curve}{52}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Receiver Operating Characteristic}{53}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Training and Testing}{54}{section.4.3}
+\contentsline {section}{\numberline {4.4}Cross validation}{55}{section.4.4}
+\contentsline {chapter}{\numberline {5}Discriminative Models to Predict Stopout}{57}{chapter.5}
+\contentsline {paragraph}{Multiple prediction problems}{58}{section*.26}
+\contentsline {section}{\numberline {5.1}Logistic Regression}{59}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Learning}{60}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Inference and evaluation}{61}{subsection.5.1.2}
+\contentsline {paragraph}{Predictive accuracy heat map}{61}{section*.28}
+\contentsline {subsection}{\numberline {5.1.3}Attractive properties of logistic regression}{62}{subsection.5.1.3}
+\contentsline {section}{\numberline {5.2}Predicting stopout with logistic regression}{62}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Experimental setup}{63}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Experimental results}{63}{subsection.5.2.2}
+\contentsline {paragraph}{Are there early signs of stopout?}{64}{section*.34}
+\contentsline {paragraph}{The prediction spike after the midterm}{66}{section*.35}
+\contentsline {section}{\numberline {5.3}Randomized Logistic Regression}{68}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Experimental setup}{69}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Experimental results}{69}{subsection.5.3.2}
+\contentsline {paragraph}{Week invariant feature importance}{69}{section*.36}
+\contentsline {paragraph}{Feature invariant week importance}{71}{section*.42}
+\contentsline {chapter}{\numberline {6}Temporal Models of Student Behavior}{77}{chapter.6}
+\contentsline {section}{\numberline {6.1}Hidden markov models for modeling student behavior}{78}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Learning the probabilities of an HMM}{80}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Inference}{81}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Advantages and disadvantages of HMMs}{81}{subsection.6.1.3}
+\contentsline {section}{\numberline {6.2}Predicting stopout using HMMs}{83}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Experimental setup}{84}{subsection.6.2.1}
+\contentsline {section}{\numberline {6.3}HMM results}{84}{section.6.3}
+\contentsline {chapter}{\numberline {7}Logistic Regression of the HMM Hidden State Distribution}{97}{chapter.7}
+\contentsline {section}{\numberline {7.1}Background}{97}{section.7.1}
+\contentsline {section}{\numberline {7.2}Predicting stopout using logistic regression on HMM state}{98}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Experimental setup}{99}{subsection.7.2.1}
+\contentsline {section}{\numberline {7.3}Logistic regression on HMM state results}{100}{section.7.3}
+\contentsline {chapter}{\numberline {8}Discriminative Classifiers: Delphi}{107}{chapter.8}
+\contentsline {section}{\numberline {8.1}Background}{107}{section.8.1}
+\contentsline {section}{\numberline {8.2}Predicting stopout using Delphi}{107}{section.8.2}
+\contentsline {subsection}{\numberline {8.2.1}Experimental setup}{107}{subsection.8.2.1}
+\contentsline {section}{\numberline {8.3}Delphi results}{108}{section.8.3}
+\contentsline {chapter}{\numberline {9}Distributed Computing}{111}{chapter.9}
+\contentsline {chapter}{\numberline {10}Conclusion}{115}{chapter.10}
+\contentsline {section}{\numberline {10.1}Data science discussion}{115}{section.10.1}
+\contentsline {paragraph}{Feature engineering}{115}{section*.75}
+\contentsline {paragraph}{Machine learning/modeling at scale}{115}{section*.76}
+\contentsline {paragraph}{Transfer learning prospects}{116}{section*.77}
+\contentsline {section}{\numberline {10.2}Research findings}{116}{section.10.2}
+\contentsline {section}{\numberline {10.3}Contributions}{118}{section.10.3}

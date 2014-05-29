@@ -1,0 +1,70 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2-1}{\ignorespaces Multiple data sources received from edX with their corresponding formats\relax }}{28}{figure.caption.6}
+\contentsline {figure}{\numberline {2-2}{\ignorespaces Piping data into MOOCdb\relax }}{29}{figure.caption.7}
+\contentsline {figure}{\numberline {2-3}{\ignorespaces Stopout week distribution\relax }}{31}{figure.caption.8}
+\contentsline {figure}{\numberline {2-4}{\ignorespaces Diagram of the students' weeks data used in a lead 5, lag 3 prediction problem\relax }}{32}{figure.caption.9}
+\contentsline {figure}{\numberline {2-5}{\ignorespaces Chart of the relative sizes of our cohorts\relax }}{33}{figure.caption.10}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3-1}{\ignorespaces The distribution of feature values for $x_{2}$\xspace through $x_{10}$\xspace \relax }}{42}{figure.caption.13}
+\contentsline {figure}{\numberline {3-2}{\ignorespaces The distribution of feature values for $x_{11}$\xspace through $x_{201}$\xspace \relax }}{43}{figure.caption.14}
+\contentsline {figure}{\numberline {3-3}{\ignorespaces The distribution of feature values for $x_{202}$\xspace through $x_{210}$\xspace \relax }}{44}{figure.caption.15}
+\contentsline {figure}{\numberline {3-4}{\ignorespaces The distribution of binned feature values for $x_{2}$\xspace through $x_{10}$\xspace \relax }}{45}{figure.caption.16}
+\contentsline {figure}{\numberline {3-5}{\ignorespaces The distribution of binned feature values for $x_{11}$\xspace through $x_{201}$\xspace \relax }}{46}{figure.caption.17}
+\contentsline {figure}{\numberline {3-6}{\ignorespaces The distribution of binned feature values for $x_{202}$\xspace through $x_{210}$\xspace \relax }}{47}{figure.caption.18}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4-1}{\ignorespaces Example precision-recall curve. The curve was generated using logistic regression on the forum\_only dataset, with a lead of 3 and a lag of 4. This model will be discussed later, but serves here as an example.\relax }}{52}{figure.caption.20}
+\contentsline {figure}{\numberline {4-2}{\ignorespaces Example ROC curve. The curve was generated using logistic regression on the forum\_only dataset, with a lead of 3 and a lag of 4. This model will be discussed later, but serves here as an example.\relax }}{53}{figure.caption.21}
+\contentsline {figure}{\numberline {4-3}{\ignorespaces The k-fold cross validation partitioning. K models are built, using K-1 folds for model construction and the last fold for model evaluation\relax }}{56}{figure.caption.22}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5-1}{\ignorespaces The feature matrix, which captures each feature value for each week. Each student has such a matrix.\relax }}{57}{figure.caption.23}
+\contentsline {figure}{\numberline {5-2}{\ignorespaces Diagram of the student's weeks data used in a lead 5, lag\xspace 3 prediction problem\relax }}{58}{figure.caption.24}
+\contentsline {figure}{\numberline {5-3}{\ignorespaces Diagram of the flattening process. In this case two weeks of data is used to predict week 13. This prediction problem corresponds to a lead of 11, and a lag of 2.\relax }}{58}{figure.caption.25}
+\contentsline {figure}{\numberline {5-4}{\ignorespaces The logit (aka logistic or sigmoid) function. The logit equation is $ y = \frac {1}{1 + e ^{-x}}$. The range of the function is between 0 and 1.\relax }}{60}{figure.caption.27}
+\contentsline {figure}{\numberline {5-5}{\ignorespaces Example heatmap for a logistic regression problem. The heatmap shows how the ROC AUC varied as lag\xspace changed as the target prediction week changed.\relax }}{62}{figure.caption.29}
+\contentsline {figure}{\numberline {5-6}{\ignorespaces Logistic regression results for the passive collaborator\xspace cohort.\relax }}{64}{figure.caption.30}
+\contentsline {figure}{\numberline {5-7}{\ignorespaces Logistic regression results for the forum contributor\xspace cohort.\relax }}{65}{figure.caption.31}
+\contentsline {figure}{\numberline {5-8}{\ignorespaces Logistic regression results for the fully collaborative\xspace cohort.\relax }}{66}{figure.caption.32}
+\contentsline {figure}{\numberline {5-9}{\ignorespaces Logistic regression results for the wiki contributor\xspace cohort.\relax }}{67}{figure.caption.33}
+\contentsline {figure}{\numberline {5-10}{\ignorespaces Aggregating feature 1's weights to assemble relative feature importance for a single experiment. In this example, the lag is 3. Three weeks data is used to predict a stopout\xspace in a future week. The Randomized logistic regression gives the weights for all 27 features for all three weeks (unnormalized). To assemble the week invariance relative weight for feature 1 we sum the weights and divide it with the total weights. We note that this is a heuristic. \relax }}{70}{figure.caption.37}
+\contentsline {figure}{\numberline {5-11}{\ignorespaces Feature importances for the passive collaborator\xspace cohort.\relax }}{70}{figure.caption.38}
+\contentsline {figure}{\numberline {5-12}{\ignorespaces Feature importances for the forum contributor\xspace cohort.\relax }}{71}{figure.caption.39}
+\contentsline {figure}{\numberline {5-13}{\ignorespaces Feature importances for the fully collaborative\xspace cohort.\relax }}{72}{figure.caption.40}
+\contentsline {figure}{\numberline {5-14}{\ignorespaces Feature importances for the wiki contributor\xspace cohort.\relax }}{72}{figure.caption.41}
+\contentsline {figure}{\numberline {5-15}{\ignorespaces Aggregating different weeks weights to assemble weeks relative importance for a single experiment for a given lag. In this example, the lag is 3. That is, three weeks data is used to predict a stopout\xspace in a future week. The Randomized logistic regression gives the weights for all 27 features for all three weeks (unnormalized). To assemble the feature-invariant relative weight for week 1 we sum the weights for all features in week 1 and divide it with the total weights. We note that this is a heuristic. \relax }}{73}{figure.caption.43}
+\contentsline {figure}{\numberline {5-16}{\ignorespaces Feature week's importance as lag\xspace varies for the passive collaborator\xspace cohort.\relax }}{73}{figure.caption.44}
+\contentsline {figure}{\numberline {5-17}{\ignorespaces Feature week's importance as lag\xspace varies for the forum contributor\xspace cohort.\relax }}{74}{figure.caption.45}
+\contentsline {figure}{\numberline {5-18}{\ignorespaces Feature week's importance as lag\xspace varies for the fully collaborative\xspace cohort.\relax }}{75}{figure.caption.46}
+\contentsline {figure}{\numberline {5-19}{\ignorespaces Feature week's importance as lag\xspace varies for the wiki contributor\xspace cohort.\relax }}{76}{figure.caption.47}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6-1}{\ignorespaces A typical hidden markov model structure. Top figure shows a common hidden markov model with only one variable. The bottom figure represents our case where we have multiple observed variables per time slice.\relax }}{80}{figure.caption.48}
+\contentsline {figure}{\numberline {6-2}{\ignorespaces This figure shows how the student-week-matrix which has features that represent the behavior of a student during a week is provided as evidence to the hidden markov model training.\relax }}{81}{figure.caption.49}
+\contentsline {figure}{\numberline {6-3}{\ignorespaces This figure shows how the HMM is used to predict value for an observed variable in a future time slice. In this specific example evidence is provided to the model through week 2 and a prediction is sought for the 14th week \relax }}{82}{figure.caption.50}
+\contentsline {figure}{\numberline {6-4}{\ignorespaces Heatmap for the passive collaborator\xspace cohort. PCA transformations of features used.\relax }}{85}{figure.caption.51}
+\contentsline {figure}{\numberline {6-5}{\ignorespaces Heatmap for the forum contributor\xspace cohort. PCA transformations of features used.\relax }}{86}{figure.caption.52}
+\contentsline {figure}{\numberline {6-6}{\ignorespaces Heatmap for the fully collaborative\xspace cohort. PCA transformations of features used.\relax }}{87}{figure.caption.53}
+\contentsline {figure}{\numberline {6-7}{\ignorespaces Mean AUC as K increases for the passive collaborator\xspace cohort. PCA transformations of features used.\relax }}{88}{figure.caption.54}
+\contentsline {figure}{\numberline {6-8}{\ignorespaces Mean AUC as K increases for the forum contributor\xspace cohort. PCA transformations of features used.\relax }}{88}{figure.caption.55}
+\contentsline {figure}{\numberline {6-9}{\ignorespaces Mean AUC as K increases for the fully collaborative\xspace cohort. PCA transformations of features used.\relax }}{89}{figure.caption.56}
+\contentsline {figure}{\numberline {6-10}{\ignorespaces Heatmap for the passive collaborator\xspace cohort.\relax }}{90}{figure.caption.57}
+\contentsline {figure}{\numberline {6-11}{\ignorespaces Heatmap for the forum contributor\xspace cohort.\relax }}{91}{figure.caption.58}
+\contentsline {figure}{\numberline {6-12}{\ignorespaces Heatmap for the fully collaborative\xspace cohort.\relax }}{92}{figure.caption.59}
+\contentsline {figure}{\numberline {6-13}{\ignorespaces Heatmap for the wiki contributor\xspace cohort.\relax }}{93}{figure.caption.60}
+\contentsline {figure}{\numberline {6-14}{\ignorespaces Mean AUC as K increases for the passive collaborator\xspace cohort.\relax }}{93}{figure.caption.61}
+\contentsline {figure}{\numberline {6-15}{\ignorespaces Mean AUC as K increases for the forum contributor\xspace cohort.\relax }}{94}{figure.caption.62}
+\contentsline {figure}{\numberline {6-16}{\ignorespaces Mean AUC as K increases for the fully collaborative\xspace cohort.\relax }}{94}{figure.caption.63}
+\contentsline {figure}{\numberline {6-17}{\ignorespaces Mean AUC as K increases for the wiki contributor\xspace cohort.\relax }}{95}{figure.caption.64}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {7-1}{\ignorespaces Diagram showing how the logistic regression feature vector is created using the HMM hidden state probabilities as features.\relax }}{98}{figure.caption.65}
+\contentsline {figure}{\numberline {7-2}{\ignorespaces Heatmap of the passive collaborator\xspace cohort. PCA transformations of features used. The shown heatmap used a support of 27 for the HMM. This was the support which yielded the highest mean AUC.\relax }}{100}{figure.caption.66}
+\contentsline {figure}{\numberline {7-3}{\ignorespaces Heatmap of the forum contributor\xspace cohort. PCA transformations of features used. The shown heatmap used a support of 21 for the HMM. This was the support which yielded the highest mean AUC.\relax }}{101}{figure.caption.67}
+\contentsline {figure}{\numberline {7-4}{\ignorespaces Heatmap of the fully collaborative\xspace cohort. PCA transformations of features used. The shown heatmap used a support of 19 for the HMM. This was the support which yielded the highest mean AUC.\relax }}{102}{figure.caption.68}
+\contentsline {figure}{\numberline {7-5}{\ignorespaces Heatmap of the wiki contributor\xspace cohort. The shown heatmap used a support of 7 for the HMM. This was the support which yielded the highest mean AUC.\relax }}{103}{figure.caption.69}
+\contentsline {figure}{\numberline {7-6}{\ignorespaces Mean AUC as K increases for the passive collaborator\xspace cohort. PCA transformations of features used.\relax }}{104}{figure.caption.70}
+\contentsline {figure}{\numberline {7-7}{\ignorespaces Mean AUC as K increases for the forum contributor\xspace cohort. PCA transformations of features used.\relax }}{104}{figure.caption.71}
+\contentsline {figure}{\numberline {7-8}{\ignorespaces Mean AUC as K increases for the fully collaborative\xspace cohort. PCA transformations of features used.\relax }}{105}{figure.caption.72}
+\contentsline {figure}{\numberline {7-9}{\ignorespaces Mean AUC as K increases for the wiki contributor\xspace cohort.\relax }}{105}{figure.caption.73}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {9-1}{\ignorespaces The client-server architecture of DCAP. It is used to parallelize the model prediction process.\relax }}{112}{figure.caption.74}
+\addvspace {10\p@ }

@@ -1,0 +1,52 @@
+\chapter{Conclusion}\label{chap:conc}
+\section{Data science discussion}
+For a successful data science endeavor, there are many critical components. As presented in this thesis, there are numerous challenges in assembling features and a number of data representations one could try and a number of ways to model.  One has to be thorough and systematic, otherwise one will never know if one has got the best prediction capability (thorough in feature definition, model exploration).
+
+\paragraph{Feature engineering}
+One has to be meticulous \textbf{from the data up} -- any vague assumptions, quick and dirty data conditioning or preparation will create weak foundations for your modeling and analyses. Many times painstaking manual labor is required - such as manually matching up pset deadlines, etc. You need to be ready to think creatively as you brainstorm and extract features, and be flexible in the ways you assemble them. For example, utilizing the crowd is much richer than just your own expertise.
+
+\paragraph{Machine learning/modeling at scale} 
+There are many ways to represent the extracted features data- with or without PCA, temporal and non-temporal, discretized and non discretized. Additionally there are a number of modeling choices - discriminative, generative or mixed models which include many types of classifiers. One has to consider a number of them to enable insights at scale. The alternative results in a much smaller scope with more limited results.
+
+Our ability to build 10,000 models relied on us first building the cloud scale platforms. This is especially true as the machine learning process includes iterations over data definitions, features and cohort definitions. Only through a large scale computational framework are these multiple iterations possible. Throughout our analysis we ran on hundreds of nodes simultaneously, using the DCAP and Delphi frameworks. 
+
+\paragraph{Transfer learning prospects}
+In order to have a lasting impact on MOOC data science, you have to think big! Investing resources only in investigating stopout for one course limits the impacts of the results. With this in mind, we set out to create a reusable, scalable methodology.
+
+From the beginning of our research, we envisioned that all the software built upon the shared data schema MOOCdb will be open source and will be re-used for a large cohort of courses. We spent time to ensure the shared data schema captures and generalizes to courses of different types, from different universities and from different platforms. 
+
+\section{Research findings}
+After applying the steps outlined in the previous chapters, we were successfully able to predict \sti for the Fall 2012 offering of 6.002x. Through analysis of the resulting models, we uncovered a myriad of findings, including the following:
+
+\begin{itemize}
+\item Stopout prediction is a tractable problem. Our models achieved an AUC (receiver operating characteristic area-under-the-curve) as high as 0.95 (and generally $\sim$0.88) when predicting one week in advance. Even with more difficult prediction problems, such as predicting student stopout at the end of the course with only one week's data, our models attained AUCs of $\sim$0.7. This suggests that early predictors of stopout exist.
+
+\item A crowd familar with MOOCs is capable of proposing sophisticated features which are highly predictive. The features brainstormed by our crowd-sourcing efforts were actually more useful than those we thought of independently. Additionally, the crowd is very willing to participate in MOOC research. These observations suggest the education-informed crowd is a realistic source of modeling assistance and more efforts should be made to engage it.
+
+\item Overall, features which incorporate student problem submission engagement are the most predictive of stopout. As our prediction problem defined stopout using problem submissions, this result is not particularly surprising. however submission engagement is an arguably good definition.
+
+\item In general, complex, sophisticated features, such the percentile of a student when compared to other students (\x{202}, Table \ref{table:crowd_proposed_self_extracted}), which relates students to peers, and lab grade over time(\x{207}, Table \ref{table:crowd_proposed_self_extracted}), which has a temporal trend, are more predictive than simple features, such a count of submissions (\x{7}, Table \ref{table:self_proposed_self_extracted}). 
+
+\item Features involving inter-student collaboration, such as the class forum and Wiki, can be useful in stopout prediction. It is likely that the quality and content of a student's questions or knowledge are more important than strict collaboration frequency. We found that, in particular, the length of forum posts (\x{5}, Table \ref{table:self_proposed_self_extracted}) is predictive, but the number of posts (\x{3}, Table \ref{table:self_proposed_self_extracted}) and number of forum responses (\x{201}, Table \ref{table:crowd_proposed_self_extracted}) is not. The role of the collaborative mechanism (i.e. Wiki or forum) also appears to be distinctive since, in contrast to forum post length, Wiki edits have almost no predictive power.
+
+\item For almost every prediction week, our models find only the most recent four weeks of data predictive.
+
+\item Taking the extra effort to extract complex predictive features that require relative comparison or temporal trends, rather than employing more direct covariates of behavior, or \underline{even trying multiple modeling techniques}, is the most important contributor to successful MOOC data science. While we constructed many models with a variety of techniques, we found consistent accuracy arising \textbf{across techniques} which was dependent on the features we used. Using more informative features yielded superior accuracy that was consistent across modeling techniques. Very seldom did the modeling technique itself make a difference. A significant exception to this is when the model only has a small number of students (for example,$\sim$ less than 400) to learn from. Some models perform notably better than others on less data.
+
+\item Employing dimensionality reduction, such as principal component analysis (PCA), generally did not improve the predictive accuracy of our models. However, it did significantly speed up our model generation running time. We applied PCA only to discretized data to train hidden markov models (HMMs).
+
+\item By using HMMs we gain support for our hypothesis that the observations we gather about students reflect a hidden state or `'latent variable'. We speculate that this state is related to engagement or interest. Our models uncovered different quantities of modes for this hidden state which depend on the cohort of students. For some cohorts, such as \neither students, the number of modes seems to exceed 29, as increasing this number in our HMMs never stopped producing better results. However, for \forum cohort, the number of modes is only around 11.
+\end{itemize}
+
+\section{Contributions}
+
+The strongest contribution of this thesis is the design, development and demonstration of a stopout prediction \textbf{methodology}, end to end, from raw source data to model analysis. The methodology is painstakingly meticulous about every detail of data preparation, feature engineering, model evaluation and outcome analysis. As a result of this thoroughness, research of stopout analysis exits an immature stage of ad-hoc data preparation and results, with insufficient details to allow replication or systematic advancement of knowledge. We document a methodology that is reproducable and scalable, and that will soon be applied on a number of additional edX and Coursera courses with the expectation of similar success. In addition, the methodology and software will shortly be released to interested educational researchers.
+
+This methodology included:
+\begin{itemize}
+\item Successfully predicted stopout for the Fall 2012 offering of 6.002x. 
+\item Extracted 28 sophisticated, interpretive features which combine student usage patterns from different data sources. This included leveraging the collective brain-power of the crowd. 
+\item Utilized these features to create a series of temporal and non-temporal feature-sets for use in predictive modelling. These featuresets included techniques such as PCA.
+\item Created over 10,000 comprehensive, predictive models using a variety of state-of-the-art techniques, such as logistic regression, HMMs, K-nearest-neighbors, etc.
+\item Built and demonstrated a scalable, distributed, modular and reusable framework to accomplish these steps iteratively, using DCAP and Delphi.
+\end{itemize}

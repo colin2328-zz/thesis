@@ -1,0 +1,52 @@
+\section{Demonstration of how to include figures}
+
+This is how you incorporate a figure. It has to be am png or a cropped pdf file stored in the figures folder. Here I am showing the code to include a figure. 
+
+executing above will give 
+
+\begin{figure}[ht!]
+  \caption{Fancy caption goes here}\label{fig:recommenderMat}
+  \centering
+    \includegraphics[width=1.0\textwidth]{figures/test.png}
+\end{figure}
+
+
+Next this is how you cite the figure using its label:
+
+\begin{verbatim}
+Figure~\ref{fig:recommenderMat} shows a recommendation matrix 
+\end{verbatim}
+
+When you write this in your latex, this is what happens:
+
+Figure~\ref{fig:recommenderMat} shows a recommendation matrix 
+
+
+
+\section{Incorporating tables}
+
+An example table file is given in tables folder. you can include the table by simply doing: 
+
+\begin{verbatim}
+\input{uci_datasets_table}
+\end{verbatim}
+
+
+and this is what happens 
+\input{tables/uci_datasets_table}
+
+\section{Regarding newcommand} 
+THis is probably the most important instruction and will help you scale your thesis writing. For example, there is a term let's say that you have not decided what to use for it, but it till appear everywhere in your thesis. For example stopout. To be able to change this term with one change you need to do this: 
+
+1. First create a new command in your top level file colin.tex or elaine.tex like this 
+
+\begin{verbatim}
+\newcommand{\st}{stopout\xspace}
+\end{verbatim}
+
+Now throughout the thesis when you want to say stopout you should use the command
+\begin{verbatim}
+ \st
+ \end{verbatim}
+ 
+ and then if you want to change stopout to dropout in your entire thesis, you can simple change the definition of the new command in the top level file. 
